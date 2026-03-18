@@ -69,17 +69,53 @@ function toggleDone(exerciseName, setIndex) {
       boxShadow: " 0 2px 8px rgba(0,0,0,0.06)"
     }}>
 
-      <button onClick = {() => setActiveTab("home")} >
-        Home 
-      </button>
+     <button 
+  onClick={() => setActiveTab("home")}
+  style={{
+    padding: "10px 20px",
+    borderRadius: "12px",
+    border: "none",
+    backgroundColor: activeTab === "home" ? "#7c5cbf" : "transparent",
+    color: activeTab === "home" ? "white" : "#7c5cbf",
+    fontWeight: "bold",
+    cursor: "pointer",
+    fontSize: "15px"
+  }}
+>
+  Home
+</button>
 
-      <button onClick = {() =>setActiveTab ( "workout")} > 
-        Workout
-      </button>
+      <button 
+  onClick={() => setActiveTab("workout")}
+  style={{
+    padding: "10px 20px",
+    borderRadius: "12px",
+    border: "none",
+    backgroundColor: activeTab === "workout" ? "#7c5cbf" : "transparent",
+    color: activeTab === "workout" ? "white" : "#7c5cbf",
+    fontWeight: "bold",
+    cursor: "pointer",
+    fontSize: "15px"
+  }}
+>
+  Workout
+</button>
 
-      <button onClick = { () => setActiveTab ( "progress")}>
-        Progress 
-      </button>
+      <button 
+  onClick={() => setActiveTab("progress")}
+  style={{
+    padding: "10px 20px",
+    borderRadius: "12px",
+    border: "none",
+    backgroundColor: activeTab === "progress" ? "#7c5cbf" : "transparent",
+    color: activeTab === "progress" ? "white" : "#7c5cbf",
+    fontWeight: "bold",
+    cursor: "pointer",
+    fontSize: "15px"
+  }}
+>
+  Progress
+</button>
       </div>
 
       <div style = {{

@@ -46,8 +46,11 @@ app.post("/api/workout", (req, res) => {
   };
   pool = pool.filter((ex) => allowedLevels[level].includes(ex.level));
 
-  // 4) Shuffle for variety
-  pool = pool.sort(() => Math.random() - 0.5);
+  // 4) Shuffle for variety then sort by level
+pool = pool.sort(() => Math.random() - 0.5);
+
+const levelOrder = { "advanced": 0, "intermediate": 1, "beginner": 2, "all": 3 };
+pool = pool.sort((a, b) => levelOrder[a.level] - levelOrder[b.level]);
 
   // 5) Pick one exercise per movement pattern (no repeated movements)
   const workout = [];

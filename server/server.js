@@ -33,26 +33,24 @@ app.post("/api/workout", (req, res) => {
 
   // 1) Filter by category
   let pool = exercises.filter((ex) => exerciseMatchesGoal(ex, goal));
-  console.log("Pool after goal filter:", pool.map(e => e.name));
 
   // 2) Filter by gym equipment
   pool = pool.filter((ex) => exerciseFitsGym(ex, gym.equipment));
 
   // 3) Filter by level — higher levels can see easier exercises too
   const allowedLevels = {
-    "beginner": ["beginner", "all"],
+    "beginner":     ["beginner", "all"],
     "intermediate": ["beginner", "intermediate", "all"],
-    "advanced": ["beginner", "intermediate", "advanced", "all"]
+    "advanced":     ["beginner", "intermediate", "advanced", "all"]
   };
   pool = pool.filter((ex) => allowedLevels[level].includes(ex.level));
 
-  // 4) Shuffle for variety then sort by level
-pool = pool.sort(() => Math.random() - 0.5);
+  // 4) Shuffle for variety then sort so advanced exercises bubble up for advanced users
+  pool = pool.sort(() => Math.random() - 0.5);
+  const levelOrder = { "advanced": 0, "intermediate": 1, "beginner": 2, "all": 3 };
+  pool = pool.sort((a, b) => levelOrder[a.level] - levelOrder[b.level]);
 
-const levelOrder = { "advanced": 0, "intermediate": 1, "beginner": 2, "all": 3 };
-pool = pool.sort((a, b) => levelOrder[a.level] - levelOrder[b.level]);
-
-  // 5) Pick one exercise per movement pattern (no repeated movements)
+  // 5) Pick one exercise per movement pattern (no repeated movements), max 5
   const workout = [];
   const usedMovements = new Set();
 
@@ -63,14 +61,27 @@ pool = pool.sort((a, b) => levelOrder[a.level] - levelOrder[b.level]);
     if (workout.length === 5) break;
   }
 
+  // 6) Attach a Plan B alternative for each exercise (same movement, different exercise)
+  const workoutWithPlanB = workout.map((ex) => {
+    const planBOptions = pool.filter(
+      (p) => p.movement === ex.movement && p.name !== ex.name
+    );
+    // Pick a random Plan B from available options
+    const planB = planBOptions.length > 0
+      ? planBOptions[Math.floor(Math.random() * planBOptions.length)]
+      : null;
+    return { ...ex, planB };
+  });
+
   res.json({
     gym: gym.name,
     goal,
     level,
-    workout
+    workout: workoutWithPlanB
   });
 });
 
-app.listen(3001, () => {
-  console.log("Backend running on http://localhost:3001");
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Backend running on port ${PORT}`);
 });

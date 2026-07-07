@@ -473,7 +473,7 @@ function ExerciseCard({ exercise, index, sets, onAddSet, onUpdateSet, onToggleDo
         <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: "12px" }}>
           <thead>
             <tr>
-              {["Set", "kg", "Reps", "✓"].map((h, i) => (
+              {["Set", "lbs", "Reps", "✓"].map((h, i) => (
                 <th key={h} style={{
                   padding: "6px 8px",
                   textAlign: i === 3 ? "center" : "left",

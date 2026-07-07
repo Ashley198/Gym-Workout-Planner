@@ -20,13 +20,13 @@ const C = {
 // ─── Category config ───────────────────────────────────────────────────────────
 const CATEGORIES = [
   { name: "Legs",      icon: "🦵", gradient: "linear-gradient(135deg, #4338ca 0%, #7c3aed 100%)" },
-  { name: "Back",      icon: "🏋️", gradient: "linear-gradient(135deg, #0f766e 0%, #0284c7 100%)" },
+  { name: "Back",      icon: "🛡️", gradient: "linear-gradient(135deg, #0f766e 0%, #0284c7 100%)" },
   { name: "Arms",      icon: "💪", gradient: "linear-gradient(135deg, #7c3aed 0%, #db2777 100%)" },
   { name: "Full Body", icon: "⚡", gradient: "linear-gradient(135deg, #b45309 0%, #dc2626 100%)" },
   { name: "HIIT",      icon: "🔥", gradient: "linear-gradient(135deg, #dc2626 0%, #ea580c 100%)" },
   { name: "Glutes",    icon: "🏋️‍♀️", gradient: "linear-gradient(135deg, #be185d 0%, #e11d48 100%)" },
-  { name: "Chest",     icon: "🤸", gradient: "linear-gradient(135deg, #1d4ed8 0%, #4f46e5 100%)" },
-  { name: "Shoulders", icon: "🔝", gradient: "linear-gradient(135deg, #0e7490 0%, #6d28d9 100%)" },
+  { name: "Chest",     icon: "❤️‍🔥", gradient: "linear-gradient(135deg, #1d4ed8 0%, #4f46e5 100%)" },
+  { name: "Shoulders", icon: "⬆️", gradient: "linear-gradient(135deg, #0e7490 0%, #6d28d9 100%)" },
 ];
 
 const LEVELS = [
